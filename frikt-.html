@@ -1,0 +1,544 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Friktionless Labs - Advanced Space Systems Engineering</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #ffffff;
+            background: #0a0e27;
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            width: 100%;
+            background: rgba(10, 14, 39, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 1.5rem 5%;
+            z-index: 1000;
+            border-bottom: 1px solid rgba(59, 130, 246, 0.2);
+        }
+
+        nav .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            background: linear-gradient(135deg, #3b82f6, #06b6d4);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        nav a {
+            color: #e2e8f0;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        nav a:hover {
+            color: #3b82f6;
+        }
+
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            background: linear-gradient(rgba(10, 14, 39, 0.7), rgba(10, 14, 39, 0.8)), 
+                        url('https://images.unsplash.com/photo-1446776653964-20c1d3a81b06?q=80&w=2071&auto=format&fit=crop') center/cover no-repeat;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at 50% 50%, rgba(59, 130, 246, 0.1) 0%, transparent 50%);
+            animation: pulse 8s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 0.5; transform: scale(1); }
+            50% { opacity: 1; transform: scale(1.1); }
+        }
+
+        .hero-content {
+            max-width: 900px;
+            padding: 0 2rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, #ffffff, #3b82f6);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: fadeInUp 1s ease-out;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .hero p {
+            font-size: 1.3rem;
+            color: #94a3b8;
+            margin-bottom: 2rem;
+            animation: fadeInUp 1s ease-out 0.2s both;
+        }
+
+        .cta-button {
+            display: inline-block;
+            padding: 1rem 2.5rem;
+            background: linear-gradient(135deg, #3b82f6, #06b6d4);
+            color: white;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 600;
+            transition: transform 0.3s, box-shadow 0.3s;
+            animation: fadeInUp 1s ease-out 0.4s both;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(59, 130, 246, 0.4);
+        }
+
+        /* Section Styles */
+        section {
+            padding: 5rem 5%;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        h2 {
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            text-align: center;
+            background: linear-gradient(135deg, #ffffff, #3b82f6);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        /* Services Grid */
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .service-card {
+            background: linear-gradient(135deg, rgba(30, 41, 59, 0.8), rgba(15, 23, 42, 0.8));
+            padding: 2.5rem;
+            border-radius: 15px;
+            border: 1px solid rgba(59, 130, 246, 0.2);
+            transition: transform 0.3s, border-color 0.3s;
+        }
+
+        .service-card:hover {
+            transform: translateY(-10px);
+            border-color: rgba(59, 130, 246, 0.6);
+        }
+
+        .service-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .service-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: #3b82f6;
+        }
+
+        .service-card p {
+            color: #cbd5e1;
+        }
+
+        .service-card ul {
+            margin-top: 1rem;
+            padding-left: 1.5rem;
+            color: #94a3b8;
+        }
+
+        .service-card li {
+            margin-bottom: 0.5rem;
+        }
+
+        /* Capabilities Section */
+        .capabilities {
+            background: linear-gradient(135deg, rgba(15, 23, 42, 0.6), rgba(30, 41, 59, 0.6));
+            border-radius: 20px;
+            padding: 3rem;
+            margin-top: 3rem;
+        }
+
+        .capabilities-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .capability-item {
+            text-align: center;
+        }
+
+        .capability-number {
+            font-size: 3rem;
+            font-weight: bold;
+            background: linear-gradient(135deg, #3b82f6, #06b6d4);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .capability-label {
+            color: #cbd5e1;
+            margin-top: 0.5rem;
+        }
+
+        /* About Section */
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: center;
+        }
+
+        .about-text {
+            color: #cbd5e1;
+        }
+
+        .about-text h3 {
+            color: #3b82f6;
+            margin-bottom: 1rem;
+        }
+
+        .about-text p {
+            margin-bottom: 1rem;
+        }
+
+        .tech-stack {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin-top: 1.5rem;
+        }
+
+        .tech-tag {
+            background: rgba(59, 130, 246, 0.2);
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            border: 1px solid rgba(59, 130, 246, 0.4);
+        }
+
+        /* Contact Section */
+        .contact-content {
+            background: linear-gradient(135deg, rgba(30, 41, 59, 0.8), rgba(15, 23, 42, 0.8));
+            padding: 3rem;
+            border-radius: 20px;
+            border: 1px solid rgba(59, 130, 246, 0.2);
+            text-align: center;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .contact-content p {
+            color: #cbd5e1;
+            margin-bottom: 2rem;
+        }
+
+        .contact-button {
+            display: inline-block;
+            padding: 1rem 2rem;
+            background: linear-gradient(135deg, #3b82f6, #06b6d4);
+            color: white;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 600;
+            transition: transform 0.3s;
+        }
+
+        .contact-button:hover {
+            transform: scale(1.05);
+        }
+
+        /* Footer */
+        footer {
+            background: rgba(15, 23, 42, 0.8);
+            padding: 2rem 5%;
+            text-align: center;
+            color: #94a3b8;
+            border-top: 1px solid rgba(59, 130, 246, 0.2);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .hero p {
+                font-size: 1rem;
+            }
+
+            .about-content {
+                grid-template-columns: 1fr;
+            }
+
+            nav ul {
+                gap: 1rem;
+                font-size: 0.9rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <div class="container">
+            <div class="logo">Friktionless Labs</div>
+            <ul>
+                <li><a href="#home">Home</a></li>
+                <li><a href="#services">Services</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="hero-content">
+            <h1>Engineering the Future of Space Technology</h1>
+            <p>Advanced sensor systems, cutting-edge product engineering, and expert consultancy for the new space economy</p>
+            <a href="#contact" class="cta-button">Start Your Mission</a>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services">
+        <h2>Our Services</h2>
+        <div class="services-grid">
+            <div class="service-card">
+                <div class="service-icon">🛰️</div>
+                <h3>Product Engineering</h3>
+                <p>End-to-end development of space-qualified systems from concept to orbit.</p>
+                <ul>
+                    <li>Systems architecture & design</li>
+                    <li>Rapid prototyping & testing</li>
+                    <li>Flight qualification & validation</li>
+                    <li>Mission integration support</li>
+                </ul>
+            </div>
+
+            <div class="service-card">
+                <div class="service-icon">📡</div>
+                <h3>Sensor Technologies</h3>
+                <p>Next-generation electro-optical and multi-spectral sensing solutions.</p>
+                <ul>
+                    <li>EO/IR sensor development</li>
+                    <li>Hyperspectral imaging systems</li>
+                    <li>Star trackers & attitude sensors</li>
+                    <li>Custom detector assemblies</li>
+                </ul>
+            </div>
+
+            <div class="service-card">
+                <div class="service-icon">💡</div>
+                <h3>Technical Consultancy</h3>
+                <p>Expert guidance for your most challenging space engineering problems.</p>
+                <ul>
+                    <li>Mission feasibility studies</li>
+                    <li>Technology roadmapping</li>
+                    <li>Risk assessment & mitigation</li>
+                    <li>Regulatory compliance support</li>
+                </ul>
+            </div>
+
+            <div class="service-card">
+                <div class="service-icon">🔬</div>
+                <h3>R&D Services</h3>
+                <p>Innovation-driven research for emerging space applications.</p>
+                <ul>
+                    <li>Advanced materials research</li>
+                    <li>AI/ML for space systems</li>
+                    <li>Radiation hardening</li>
+                    <li>Miniaturization technologies</li>
+                </ul>
+            </div>
+
+            <div class="service-card">
+                <div class="service-icon">⚙️</div>
+                <h3>Systems Integration</h3>
+                <p>Seamless integration of complex space subsystems.</p>
+                <ul>
+                    <li>Payload integration</li>
+                    <li>Ground segment development</li>
+                    <li>Data processing pipelines</li>
+                    <li>Performance optimization</li>
+                </ul>
+            </div>
+
+            <div class="service-card">
+                <div class="service-icon">📊</div>
+                <h3>Mission Support</h3>
+                <p>Comprehensive operational support for your space missions.</p>
+                <ul>
+                    <li>Real-time monitoring systems</li>
+                    <li>Telemetry analysis</li>
+                    <li>Anomaly resolution</li>
+                    <li>Performance reporting</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Capabilities -->
+        <div class="capabilities">
+            <h2 style="margin-bottom: 2rem;">Our Capabilities</h2>
+            <div class="capabilities-grid">
+                <div class="capability-item">
+                    <div class="capability-number">15+</div>
+                    <div class="capability-label">Successful Missions</div>
+                </div>
+                <div class="capability-item">
+                    <div class="capability-number">50+</div>
+                    <div class="capability-label">Sensors Deployed</div>
+                </div>
+                <div class="capability-item">
+                    <div class="capability-number">99.8%</div>
+                    <div class="capability-label">System Reliability</div>
+                </div>
+                <div class="capability-item">
+                    <div class="capability-number">30+</div>
+                    <div class="capability-label">Expert Engineers</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about">
+        <h2>About Friktionless Labs</h2>
+        <div class="about-content">
+            <div class="about-text">
+                <h3>Who We Are</h3>
+                <p>Friktionless Labs is a cutting-edge space technology company specializing in advanced sensor systems and space-qualified product engineering. Founded by aerospace veterans and technology innovators, we bring decades of combined experience in satellite systems, optical engineering, and mission operations.</p>
+                
+                <h3 style="margin-top: 2rem;">Our Mission</h3>
+                <p>To democratize access to space technology by delivering innovative, reliable, and cost-effective solutions that enable the next generation of space missions. We're committed to pushing the boundaries of what's possible in electro-optical sensing and spacecraft engineering.</p>
+                
+                <h3 style="margin-top: 2rem;">Technology Expertise</h3>
+                <div class="tech-stack">
+                    <span class="tech-tag">Optical Systems</span>
+                    <span class="tech-tag">CubeSat Platforms</span>
+                    <span class="tech-tag">Signal Processing</span>
+                    <span class="tech-tag">Thermal Management</span>
+                    <span class="tech-tag">FPGA Development</span>
+                    <span class="tech-tag">Space Robotics</span>
+                    <span class="tech-tag">RF Systems</span>
+                    <span class="tech-tag">Power Electronics</span>
+                </div>
+            </div>
+            <div class="about-text">
+                <h3>Why Choose Us</h3>
+                <p><strong>Heritage & Innovation:</strong> We combine proven spaceflight heritage with cutting-edge innovation to deliver solutions that work in the harshest environment known to humanity.</p>
+                
+                <p><strong>Agile Development:</strong> Our streamlined processes enable rapid iteration and faster time-to-orbit without compromising quality or reliability.</p>
+                
+                <p><strong>Full-Spectrum Support:</strong> From initial concept studies to on-orbit operations, we provide comprehensive support throughout your mission lifecycle.</p>
+                
+                <p><strong>Quality Assurance:</strong> Every system undergoes rigorous testing in our state-of-the-art facilities, including thermal-vacuum chambers, vibration testing, and radiation exposure simulation.</p>
+                
+                <p><strong>Cost-Effective Solutions:</strong> We leverage commercial-off-the-shelf components and modular design principles to reduce costs while maintaining space-grade performance.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact">
+        <h2>Let's Build the Future Together</h2>
+        <div class="contact-content">
+            <p>Ready to take your space mission to the next level? Our team of experts is here to help you turn your vision into reality. Whether you need a complete system solution or specialized consultancy, we're ready to launch.</p>
+            <a href="mailto:contact@friktionless-labs.space" class="contact-button">Get In Touch</a>
+            <p style="margin-top: 2rem; font-size: 0.9rem;">
+                📧 contact@friktionless-labs.space<br>
+                📞 +1 (555) SPACE-01<br>
+                📍 Innovation Hub, Aerospace District
+            </p>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2026 Friktionless Labs. Beyond Space!</p>
+        <p style="margin-top: 0.5rem; font-size: 0.9rem;">Engineering Excellence for the New Space Economy</p>
+    </footer>
+
+    <script>
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Add scroll effect to nav
+        window.addEventListener('scroll', () => {
+            const nav = document.querySelector('nav');
+            if (window.scrollY > 100) {
+                nav.style.background = 'rgba(10, 14, 39, 0.98)';
+            } else {
+                nav.style.background = 'rgba(10, 14, 39, 0.95)';
+            }
+        });
+    </script>
+</body>
+</html>
