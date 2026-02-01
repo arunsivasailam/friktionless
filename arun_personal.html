@@ -1,0 +1,955 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Arun Sivasailam | Technology Leader & Entrepreneur</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #8b5cf6;
+            --secondary: #ec4899;
+            --accent: #06b6d4;
+            --dark: #0f172a;
+            --darker: #020617;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            line-height: 1.6;
+            color: #e2e8f0;
+            background: var(--darker);
+            overflow-x: hidden;
+        }
+
+        /* Animated Background */
+        .animated-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            background: linear-gradient(135deg, var(--darker) 0%, #1a1f3a 100%);
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            width: 100%;
+            background: rgba(15, 23, 42, 0.95);
+            backdrop-filter: blur(20px);
+            padding: 1.2rem 0;
+            z-index: 1000;
+            border-bottom: 1px solid rgba(139, 92, 246, 0.2);
+        }
+
+        nav .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .nav-name {
+            font-size: 1.5rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .menu-toggle {
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            cursor: pointer;
+            padding: 8px;
+        }
+
+        .menu-toggle span {
+            width: 28px;
+            height: 3px;
+            background: var(--primary);
+            border-radius: 3px;
+            transition: all 0.3s;
+        }
+
+        .menu-toggle.active span:nth-child(1) {
+            transform: rotate(45deg) translate(7px, 7px);
+        }
+
+        .menu-toggle.active span:nth-child(2) {
+            opacity: 0;
+        }
+
+        .menu-toggle.active span:nth-child(3) {
+            transform: rotate(-45deg) translate(7px, -7px);
+        }
+
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        .nav-menu a {
+            color: #cbd5e1;
+            text-decoration: none;
+            transition: color 0.3s;
+            font-weight: 500;
+        }
+
+        .nav-menu a:hover {
+            color: var(--primary);
+        }
+
+        .download-resume {
+            padding: 0.7rem 1.8rem !important;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white !important;
+            border-radius: 50px;
+            font-weight: 700;
+            transition: all 0.3s;
+        }
+
+        .download-resume:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 20px rgba(139, 92, 246, 0.5);
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 120px 2rem 80px;
+        }
+
+        .hero-container {
+            max-width: 1200px;
+            width: 100%;
+            display: grid;
+            grid-template-columns: 1.2fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, #ffffff, var(--primary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            font-weight: 900;
+            line-height: 1.1;
+        }
+
+        .hero-role {
+            font-size: 1.5rem;
+            color: var(--secondary);
+            margin-bottom: 1.5rem;
+            font-weight: 600;
+        }
+
+        .hero-description {
+            font-size: 1.1rem;
+            color: #94a3b8;
+            margin-bottom: 2rem;
+            line-height: 1.8;
+        }
+
+        .hero-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.8rem;
+            margin-bottom: 2.5rem;
+        }
+
+        .tag {
+            padding: 0.5rem 1.2rem;
+            background: rgba(139, 92, 246, 0.1);
+            border: 1px solid rgba(139, 92, 246, 0.3);
+            border-radius: 50px;
+            font-size: 0.85rem;
+            color: var(--primary);
+            font-weight: 600;
+        }
+
+        .hero-cta {
+            display: flex;
+            gap: 1.2rem;
+        }
+
+        .btn {
+            padding: 1rem 2.5rem;
+            border-radius: 50px;
+            font-weight: 700;
+            text-decoration: none;
+            transition: all 0.3s;
+            display: inline-block;
+            text-align: center;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 40px rgba(139, 92, 246, 0.5);
+        }
+
+        .btn-secondary {
+            border: 2px solid var(--primary);
+            color: var(--primary);
+        }
+
+        .btn-secondary:hover {
+            background: rgba(139, 92, 246, 0.1);
+        }
+
+        .hero-image {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .profile-circle {
+            width: 350px;
+            height: 350px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, rgba(139, 92, 246, 0.2), rgba(236, 72, 153, 0.2));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 3px solid rgba(139, 92, 246, 0.3);
+        }
+
+        .profile-inner {
+            width: 310px;
+            height: 310px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--dark), var(--darker));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 7rem;
+        }
+
+        /* Section Styles */
+        section {
+            padding: 5rem 2rem;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 3.5rem;
+        }
+
+        .section-badge {
+            display: inline-block;
+            padding: 0.4rem 1.2rem;
+            background: rgba(139, 92, 246, 0.1);
+            border: 1px solid rgba(139, 92, 246, 0.3);
+            border-radius: 50px;
+            color: var(--primary);
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        h2 {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+            background: linear-gradient(135deg, #ffffff, var(--primary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            font-weight: 900;
+        }
+
+        .section-description {
+            font-size: 1.1rem;
+            color: #94a3b8;
+        }
+
+        /* Experience Timeline */
+        .timeline {
+            position: relative;
+            padding-left: 2.5rem;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            height: 100%;
+            width: 2px;
+            background: linear-gradient(180deg, var(--primary), var(--secondary));
+        }
+
+        .timeline-item {
+            position: relative;
+            margin-bottom: 3rem;
+            padding-left: 2rem;
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -3rem;
+            top: 5px;
+            width: 14px;
+            height: 14px;
+            border-radius: 50%;
+            background: var(--primary);
+            border: 3px solid var(--darker);
+            box-shadow: 0 0 0 3px rgba(139, 92, 246, 0.2);
+        }
+
+        .timeline-date {
+            color: var(--secondary);
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            font-size: 0.95rem;
+        }
+
+        .timeline-title {
+            font-size: 1.5rem;
+            color: white;
+            margin-bottom: 0.3rem;
+            font-weight: 700;
+        }
+
+        .timeline-company {
+            font-size: 1.1rem;
+            color: var(--primary);
+            margin-bottom: 1rem;
+            font-weight: 600;
+        }
+
+        .timeline-description {
+            color: #cbd5e1;
+            line-height: 1.7;
+            margin-bottom: 1rem;
+        }
+
+        .timeline-achievements {
+            list-style: none;
+            padding: 0;
+        }
+
+        .timeline-achievements li {
+            padding-left: 1.5rem;
+            margin-bottom: 0.7rem;
+            position: relative;
+            color: #94a3b8;
+            line-height: 1.6;
+        }
+
+        .timeline-achievements li::before {
+            content: '▸';
+            position: absolute;
+            left: 0;
+            color: var(--accent);
+            font-weight: bold;
+        }
+
+        /* Skills Grid */
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.5rem;
+        }
+
+        .skill-category {
+            background: linear-gradient(135deg, rgba(139, 92, 246, 0.08), rgba(236, 72, 153, 0.05));
+            padding: 2rem;
+            border-radius: 15px;
+            border: 1px solid rgba(139, 92, 246, 0.2);
+            transition: all 0.3s;
+        }
+
+        .skill-category:hover {
+            transform: translateY(-5px);
+            border-color: rgba(139, 92, 246, 0.5);
+        }
+
+        .skill-category h3 {
+            color: var(--primary);
+            font-size: 1.3rem;
+            margin-bottom: 1.2rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .skill-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.6rem;
+        }
+
+        .skill-tag {
+            padding: 0.5rem 1rem;
+            background: rgba(139, 92, 246, 0.1);
+            border: 1px solid rgba(139, 92, 246, 0.25);
+            border-radius: 50px;
+            font-size: 0.85rem;
+            color: #cbd5e1;
+            font-weight: 600;
+        }
+
+        /* Education */
+        .education-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2rem;
+        }
+
+        .education-card {
+            background: linear-gradient(135deg, rgba(139, 92, 246, 0.08), rgba(236, 72, 153, 0.05));
+            padding: 2.5rem;
+            border-radius: 15px;
+            border: 1px solid rgba(139, 92, 246, 0.2);
+        }
+
+        .education-card h3 {
+            color: white;
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+            font-weight: 700;
+        }
+
+        .education-institution {
+            color: var(--primary);
+            font-size: 1.1rem;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+        }
+
+        .education-date {
+            color: #94a3b8;
+            font-size: 0.95rem;
+            margin-bottom: 1rem;
+        }
+
+        .education-description {
+            color: #cbd5e1;
+            line-height: 1.6;
+        }
+
+        /* Contact Section */
+        .contact-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1.5rem;
+            margin-top: 3rem;
+        }
+
+        .contact-item {
+            background: linear-gradient(135deg, rgba(139, 92, 246, 0.08), rgba(236, 72, 153, 0.05));
+            padding: 2rem;
+            border-radius: 15px;
+            border: 1px solid rgba(139, 92, 246, 0.2);
+            text-align: center;
+            transition: all 0.3s;
+        }
+
+        .contact-item:hover {
+            transform: translateY(-5px);
+            border-color: var(--primary);
+        }
+
+        .contact-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .contact-label {
+            color: #94a3b8;
+            margin-bottom: 0.5rem;
+            font-size: 0.9rem;
+        }
+
+        .contact-value {
+            color: white;
+            font-weight: 600;
+            font-size: 1rem;
+        }
+
+        .contact-value a {
+            color: var(--primary);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .contact-value a:hover {
+            color: var(--secondary);
+        }
+
+        /* Languages */
+        .languages {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin-top: 2.5rem;
+        }
+
+        .language-badge {
+            padding: 0.7rem 1.5rem;
+            background: linear-gradient(135deg, rgba(139, 92, 246, 0.15), rgba(236, 72, 153, 0.1));
+            border: 1px solid rgba(139, 92, 246, 0.3);
+            border-radius: 50px;
+            color: white;
+            font-weight: 600;
+            font-size: 0.95rem;
+        }
+
+        /* Footer */
+        footer {
+            background: rgba(15, 23, 42, 0.5);
+            padding: 2.5rem 2rem;
+            text-align: center;
+            color: #94a3b8;
+            border-top: 1px solid rgba(139, 92, 246, 0.2);
+        }
+
+        .footer-tagline {
+            font-size: 1.2rem;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 1024px) {
+            .skills-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .hero-container {
+                grid-template-columns: 1fr;
+                gap: 3rem;
+                text-align: center;
+            }
+
+            .hero-tags {
+                justify-content: center;
+            }
+
+            .hero-cta {
+                justify-content: center;
+            }
+
+            .hero-image {
+                order: -1;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .menu-toggle {
+                display: flex;
+            }
+
+            .nav-menu {
+                position: fixed;
+                top: 73px;
+                right: -100%;
+                width: 280px;
+                background: rgba(15, 23, 42, 0.98);
+                backdrop-filter: blur(20px);
+                flex-direction: column;
+                padding: 2rem;
+                border-left: 1px solid rgba(139, 92, 246, 0.2);
+                border-bottom: 1px solid rgba(139, 92, 246, 0.2);
+                border-radius: 0 0 0 20px;
+                transition: right 0.3s ease;
+                box-shadow: -5px 5px 30px rgba(0, 0, 0, 0.3);
+                gap: 0;
+                align-items: stretch;
+                height: calc(100vh - 73px);
+            }
+
+            .nav-menu.active {
+                right: 0;
+            }
+
+            .nav-menu li {
+                width: 100%;
+                border-bottom: 1px solid rgba(139, 92, 246, 0.1);
+            }
+
+            .nav-menu a {
+                display: block;
+                padding: 1rem 0;
+            }
+
+            .download-resume {
+                margin-top: 1rem;
+                text-align: center;
+            }
+
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero-role {
+                font-size: 1.3rem;
+            }
+
+            .hero-description {
+                font-size: 1rem;
+            }
+
+            .profile-circle {
+                width: 280px;
+                height: 280px;
+            }
+
+            .profile-inner {
+                width: 240px;
+                height: 240px;
+                font-size: 5.5rem;
+            }
+
+            h2 {
+                font-size: 2rem;
+            }
+
+            .skills-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .education-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .contact-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .timeline {
+                padding-left: 2rem;
+            }
+
+            .timeline-item {
+                padding-left: 1.5rem;
+            }
+
+            .timeline-item::before {
+                left: -2.5rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            nav .container {
+                padding: 0 1rem;
+            }
+
+            .nav-name {
+                font-size: 1.2rem;
+            }
+
+            section {
+                padding: 3rem 1rem;
+            }
+
+            .hero {
+                padding: 100px 1rem 60px;
+            }
+
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .hero-role {
+                font-size: 1.1rem;
+            }
+
+            .tag {
+                font-size: 0.75rem;
+                padding: 0.4rem 1rem;
+            }
+
+            .btn {
+                padding: 0.9rem 2rem;
+                font-size: 0.9rem;
+            }
+
+            .profile-circle {
+                width: 240px;
+                height: 240px;
+            }
+
+            .profile-inner {
+                width: 200px;
+                height: 200px;
+                font-size: 4.5rem;
+            }
+
+            h2 {
+                font-size: 1.7rem;
+            }
+
+            .contact-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .timeline-title {
+                font-size: 1.3rem;
+            }
+
+            .skill-category,
+            .education-card,
+            .contact-item {
+                padding: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="animated-bg"></div>
+
+    <!-- Navigation -->
+    <nav>
+        <div class="container">
+            <div class="nav-name">Arun Sivasailam</div>
+            <div class="menu-toggle" id="menuToggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+            <ul class="nav-menu" id="navMenu">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#experience">Experience</a></li>
+                <li><a href="#skills">Skills</a></li>
+                <li><a href="#education">Education</a></li>
+                <li><a href="#contact">Contact</a></li>
+                <li><a href="#" class="download-resume" id="downloadResume">📄 Resume</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="hero-container">
+            <div>
+                <h1>Arun Sivasailam</h1>
+                <div class="hero-role">Technology Leader & Entrepreneur</div>
+                <div class="hero-description">
+                    Founder of Friktionless Labs, pioneering the intersection of space technology and life sciences. 
+                    Specializing in Space Domain Awareness (SDA/SSA), advanced sensor systems, and biotechnology innovation.
+                </div>
+                <div class="hero-tags">
+                    <span class="tag">🚀 Space Technology</span>
+                    <span class="tag">🧬 Life Sciences</span>
+                    <span class="tag">💡 Innovation Leader</span>
+                    <span class="tag">🌍 Frankfurt, Germany</span>
+                </div>
+                <div class="hero-cta">
+                    <a href="#contact" class="btn btn-primary">Get In Touch</a>
+                    <a href="#experience" class="btn btn-secondary">View Work</a>
+                </div>
+            </div>
+            <div class="hero-image">
+                <div class="profile-circle">
+                    <div class="profile-inner">👨‍💻</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Experience Section -->
+    <section id="experience">
+        <div class="container">
+            <div class="section-header">
+                <div class="section-badge">Professional Journey</div>
+                <h2>Experience</h2>
+            </div>
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-date">April 2019 - Present</div>
+                    <div class="timeline-title">Founder & Chief Technology Officer</div>
+                    <div class="timeline-company">Friktionless Labs · Frankfurt, Germany</div>
+                    <div class="timeline-description">
+                        Leading a cutting-edge technology company at the intersection of space systems and life sciences, specializing in SDA/SSA and biotechnology applications.
+                    </div>
+                    <ul class="timeline-achievements">
+                        <li>Pioneer advanced SDA/SSA solutions for space object tracking and collision avoidance</li>
+                        <li>Develop next-generation EO/IR sensors and hyperspectral imaging systems</li>
+                        <li>Lead cross-domain innovation in biotechnology for space and terrestrial applications</li>
+                        <li>Architect full-stack solutions across AWS, GCP, and Azure for space monitoring</li>
+                        <li>Drive R&D in AI/ML applications for space systems and biomedical instrumentation</li>
+                    </ul>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-date">2015 - Present</div>
+                    <div class="timeline-title">Freelance Consultant</div>
+                    <div class="timeline-company">Independent · Global</div>
+                    <div class="timeline-description">
+                        Providing expert consulting services in enterprise resource planning and cloud infrastructure solutions for diverse clients worldwide.
+                    </div>
+                    <ul class="timeline-achievements">
+                        <li>Odoo ERP implementation, customization, and integration for enterprise clients</li>
+                        <li>Cloud infrastructure design and deployment across AWS, GCP, and Azure platforms</li>
+                        <li>Custom module development and workflow optimization for business processes</li>
+                        <li>Migration strategies from legacy systems to modern cloud-based solutions</li>
+                        <li>Technical consulting for scalable architecture and DevOps best practices</li>
+                    </ul>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-date">April 2014 - April 2019</div>
+                    <div class="timeline-title">Chief Executive Officer</div>
+                    <div class="timeline-company">Vertes Cloud · Bangalore, India</div>
+                    <div class="timeline-description">
+                        Led company growth to become one of India's fastest-growing enterprise solutions providers across education, healthcare, and telematics sectors.
+                    </div>
+                    <ul class="timeline-achievements">
+                        <li>Scaled enterprise solutions serving major institutions across multiple verticals</li>
+                        <li>Built cross-functional teams across engineering, sales, and client services</li>
+                        <li>Established strategic partnerships expanding market presence</li>
+                        <li>Managed P&L, fundraising, and investor relations for sustainable growth</li>
+                    </ul>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-date">August 2012 - April 2014</div>
+                    <div class="timeline-title">CEO & Founder</div>
+                    <div class="timeline-company">Vertes Cloud · India</div>
+                    <div class="timeline-description">
+                        Founded technology company focused on enterprise transformation through innovative cloud solutions.
+                    </div>
+                    <ul class="timeline-achievements">
+                        <li>Established product innovation as core competitive advantage</li>
+                        <li>Secured initial client base through strategic relationship building</li>
+                        <li>Created technical infrastructure enabling rapid scaling</li>
+                    </ul>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-date">January 2012 - March 2013</div>
+                    <div class="timeline-title">Founder</div>
+                    <div class="timeline-company">Citi Connect</div>
+                    <div class="timeline-description">
+                        Launched entrepreneurial venture focused on connectivity solutions.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="skills">
+        <div class="container">
+            <div class="section-header">
+                <div class="section-badge">Expertise</div>
+                <h2>Skills & Technologies</h2>
+            </div>
+            <div class="skills-grid">
+                <div class="skill-category">
+                    <h3>🚀 Space Technology</h3>
+                    <div class="skill-tags">
+                        <span class="skill-tag">SDA/SSA Systems</span>
+                        <span class="skill-tag">EO/IR Sensors</span>
+                        <span class="skill-tag">Hyperspectral Imaging</span>
+                        <span class="skill-tag">Orbital Mechanics</span>
+                        <span class="skill-tag">Collision Avoidance</span>
+                        <span class="skill-tag">Telemetry Analysis</span>
+                    </div>
+                </div>
+
+                <div class="skill-category">
+                    <h3>🧬 Life Sciences</h3>
+                    <div class="skill-tags">
+                        <span class="skill-tag">Biotechnology</span>
+                        <span class="skill-tag">Space Biology</span>
+                        <span class="skill-tag">Biomedical Devices</span>
+                        <span class="skill-tag">Astrobiology</span>
+                        <span class="skill-tag">Environmental Monitoring</span>
+                    </div>
+                </div>
+
+                <div class="skill-category">
+                    <h3>💻 Development</h3>
+                    <div class="skill-tags">
+                        <span class="skill-tag">Full-Stack</span>
+                        <span class="skill-tag">PHP</span>
+                        <span class="skill-tag">JavaScript</span>
+                        <span class="skill-tag">Python</span>
+                        <span class="skill-tag">Odoo ERP</span>
+                        <span class="skill-tag">AWS</span>
+                        <span class="skill-tag">GCP</span>
+                        <span class="skill-tag">Azure</span>
+                        <span class="skill-tag">API Development</span>
+                    </div>
+                </div>
+
+                <div class="skill-category">
+                    <h3>🎯 Leadership</h3>
+                    <div class="skill-tags">
+                        <span class="skill-tag">Entrepreneurship</span>
+                        <span class="skill-tag">Team Management</span>
+                        <span class="skill-tag">Product Innovation</span>
+                        <span class="skill-tag">Strategic Planning</span>
+                        <span class="skill-tag">P&L Management</span>
+                        <span class="skill-tag">Client Relations</span>
+                    </div>
+                </div>
+
+                <div class="skill-category">
+                    <h3>🔬 Research & Innovation</h3>
+                    <div class="skill-tags">
+                        <span class="skill-tag">AI/ML Systems</span>
+                        <span class="skill-tag">Signal Processing</span>
+                        <span class="skill-tag">Data Analytics</span>
+                        <span class="skill-tag">R&D Management</span>
+                        <span class="skill-tag">Cross-domain Innovation</span>
+                    </div>
+                </div>
+
+                <div class="skill-category">
+                    <h3>🏢 Industry Knowledge</h3>
+                    <div class="skill-tags">
+                        <span class="skill-tag">Space Systems</span>
+                        <span class="skill-tag">Healthcare Tech</span>
+                        <span class="skill-tag">Education Platforms</span>
+                        <span class="skill-tag">Telematics</span>
+                        <span class="skill-tag">Enterprise Solutions</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="section-header" style="margin-top: 4rem; margin-bottom: 0;">
+                <div class="section-badge">Communication</div>
+                <h2>Languages</h2>
+            </div>
+            <div class="languages">
+                <span class="language-badge">🇬🇧 English</span>
